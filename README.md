@@ -2,7 +2,7 @@
 A set of prioritized Hashcat masks intelligently developed from terabytes of password breach datasets and organized by run time.
 
 ## Goal
-To improve the efficiency of password cracking using Hashcat mask attacks by prioritizing masks with the highest password cracking probability in the shortest possible using high volumes of password breach data.
+To improve the efficiency of password cracking using Hashcat mask attacks by prioritizing masks with the highest password cracking probability in the shortest possible time using high volumes of password breach data.
 
 ## Background
 Inspired by the work of golem445 who compiled a set of password hashcat password masks using real-world data. I took this a step further by building a set of prioritized Hashcat masks using an enormous password breach dataset that I have been personally compiling and curating.
