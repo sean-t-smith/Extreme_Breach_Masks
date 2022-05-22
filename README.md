@@ -1,5 +1,5 @@
 # Extreme_Breach_Masks
-A set of prioritized Hashcat masks intelligently developed from terabytes of password breach datasets.
+A set of prioritized Hashcat masks intelligently developed from terabytes of password breach datasets and organized by run time.
 
 ## Goal
 To improve the efficiency of password cracking using Hashcat mask attacks by prioritizing masks with the highest password cracking probability in the shortest possible using high volumes of password breach data.
