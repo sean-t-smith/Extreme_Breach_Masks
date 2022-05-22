@@ -39,7 +39,7 @@ hashcat.exe -d <include_gpu_numbers> -m 1000 -w 4 -a 3 --session <name_your_sess
 4) Analyze the set of cracked passwords for potential patterns, run targeted attacks which reflect those patterns.
 5) BIG dictionary attack... run the passwords through the largest wordlist you have.
 6) Analyze any newly cracked passwords for potential patterns, run targeted attacks which reflect those patterns.
-7) Use this repository of work and run the "Efficient_#.hcmask" from this repo according to your needs.
+7) Use this repository of work and run the "<duration>_<character length>.hcmask" from this repo according to your needs.
 
 ## Example Hashcat Command for Using the .hcmask to Crack NTLM Hashes
 ```
