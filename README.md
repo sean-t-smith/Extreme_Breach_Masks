@@ -2,7 +2,7 @@
 A set of prioritized Hashcat masks intelligently developed from terabytes of password breach datasets and organized by run time.
 
 ## Goal
-To improve the efficiency of password cracking using Hashcat mask attacks by prioritizing masks with the highest password cracking probability in the shortest possible using high volumes of password breach data.
+To improve the efficiency of password cracking using Hashcat mask attacks by prioritizing masks with the highest password cracking probability in the shortest possible time using high volumes of password breach data.
 
 ## Background
 Inspired by the work of golem445 who compiled a set of password hashcat password masks using real-world data. I took this a step further by building a set of prioritized Hashcat masks using an enormous password breach dataset that I have been personally compiling and curating.
@@ -22,7 +22,7 @@ python maskgen.py --optindex -o ./1-hour_8.hcmask --minlength=8 --maxlength=8 --
 6) Repeated step #5 with various execution times to generate files optimized for various run times.
 
 ## Usage
-The .hcmask files above describe passwords of differing character lenghts, each sorted by efficiency, and formatted for use by the Hashcat password cracking tool.  Depending on your situation, you might want to focus on passwords of a specific length only vs the entire set.  You should select the hcmask file optimized for your desired time frame.  The statssgen file is icnluded if you want to re-sort and generate your own hcmask files; however, I had to pair it down to only 8-14 characters and 7zip it because the full version was to large for github.  Recognize that this type of brute force mask attack can take a long time and should be performed last after you have exhausted more targeted methods.  My recommended password cracking attack order is below:
+The .hcmask files above describe passwords of differing character lenghts, each sorted by efficiency, and formatted for use by the Hashcat password cracking tool.  Depending on your situation, you might want to focus on passwords of a specific length only vs the entire set.  You should select the hcmask file optimized for your desired time frame.  The statsgen file is included if you want to re-sort and generate your own hcmask files; however, I had to pair it down to only 8-14 characters and 7zip it because the full version was to large for github.  Recognize that this type of brute force mask attack can take a long time and should be performed last after you have exhausted more targeted methods.  My recommended password cracking attack order is below:
 
 1) Basic dictionary attack with your favorite wordlist... ie rockyou.txt
 ```
@@ -39,7 +39,7 @@ hashcat.exe -d <include_gpu_numbers> -m 1000 -w 4 -a 3 --session <name_your_sess
 4) Analyze the set of cracked passwords for potential patterns, run targeted attacks which reflect those patterns.
 5) BIG dictionary attack... run the passwords through the largest wordlist you have.
 6) Analyze any newly cracked passwords for potential patterns, run targeted attacks which reflect those patterns.
-7) Use this repository of work and run the "Efficient_#.hcmask" from this repo according to your needs.
+7) Use this repository of work and run the "duration_characters.hcmask" according to your needs.
 
 ## Example Hashcat Command for Using the .hcmask to Crack NTLM Hashes
 ```
