@@ -26,7 +26,7 @@ The .hcmask files above describe passwords of differing character lenghts, each 
 
 1) Basic dictionary attack with your favorite wordlist... ie rockyou.txt
 ```
-hashcat.exe -d <include_gpu_numbers> -m 1000 -w 4 -a 3 --session <name_your_session> <ntlm_hashes.txt> <rockyou.txt> --force
+hashcat.exe -d <include_gpu_numbers> -m 1000 -w 4 -a 0 --session <name_your_session> <ntlm_hashes.txt> <rockyou.txt> --force
 ```
 2) Brute force all permutations 1-7 character length passwords... this does not take long given the minimal keyspace of this group.
 ```
@@ -34,7 +34,7 @@ hashcat.exe --increment --increment-min=1 -d <include_gpu_numbers> -m 1000 -w 4 
 ```
 3) Targeted dictionary attack... create a custom lowercase wordlist using CeWL and add local sports teams, city names, mascots, etc and apply the best64.rule
 ```
-hashcat.exe -d <include_gpu_numbers> -m 1000 -w 4 -a 3 --session <name_your_session> <ntlm_hashes.txt> <custom_wordlist.txt> -r best64.rule --force
+hashcat.exe -d <include_gpu_numbers> -m 1000 -w 4 -a 0 --session <name_your_session> <ntlm_hashes.txt> <custom_wordlist.txt> -r best64.rule --force
 ```
 4) Analyze the set of cracked passwords for potential patterns, run targeted attacks which reflect those patterns.
 5) BIG dictionary attack... run the passwords through the largest wordlist you have.
