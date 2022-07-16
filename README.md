@@ -45,3 +45,9 @@ hashcat.exe -d <include_gpu_numbers> -m 1000 -w 4 -a 0 --session <name_your_sess
 ```
 hashcat.exe -d <include_gpu_numbers> -m 1000 -w 4 -a 3 --session <name_your_session> <ntlm_hashes.txt> 1-day_8-14.hcmask --force
 ```
+## Extra switches that might be necessary to make Hashcat crack better!
+```
+-O | Optimized Kernel that makes cracking passwords generally 30-40% faster.
+--force | Force Hashcat to stop bothering you and just crack the damn passwords.
+--hwmon-disable | Hashcat will throttle based on temp readings... ignore this and go for broke!
+```
