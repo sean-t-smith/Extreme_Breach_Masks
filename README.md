@@ -24,17 +24,18 @@ python maskgen.py --optindex -o ./1-hour_8.hcmask --minlength=8 --maxlength=8 --
 ## Usage
 The .hcmask files above describe passwords of differing character lengths, each sorted by efficiency, and formatted for use by the Hashcat password cracking tool.  Depending on your situation, you might want to focus on passwords of a specific length only vs the entire set.  You should select the hcmask file optimized for your desired time frame.  The statsgen file is included if you want to re-sort and generate your own hcmask files; however, I had to pair it down to only 8-14 characters and 7zip it because the full version was too large for github.  Recognize that this type of brute force mask attack can take a long time and should be performed last after you have exhausted more targeted methods.  My recommended password cracking attack order is below:
 
+0) Backup/Clear your hashcat potfile for the new set of hashes because mixing previous results gets confusing and if the potfile gets too large it can slow down the cracking process.
 1) Basic dictionary attack with your favorite wordlist... ie rockyou.txt
 ```
-hashcat.exe -d <include_gpu_numbers> -m 1000 -w 4 -a 0 --session <name_your_session> <ntlm_hashes.txt> <rockyou.txt> --force
+hashcat.exe -d <include_gpu_numbers> -m 1000 -w 4 -a 0 --session <name_your_session> <ntlm_hashes.txt> <rockyou.txt> -O --force --hwmon-disable
 ```
 2) Brute force all permutations 1-7 character length passwords... this does not take long given the minimal keyspace of this group.
 ```
-hashcat.exe --increment --increment-min=1 -d <include_gpu_numbers> -m 1000 -w 4 -a 3 --session <name_your_session> <ntlm_hashes.txt> -1 ?l?u?d?s ?1?1?1?1?1?1?1 --force
+hashcat.exe --increment --increment-min=1 -d <include_gpu_numbers> -m 1000 -w 4 -a 3 --session <name_your_session> <ntlm_hashes.txt> ?a?a?a?a?a?a?a -O --force --hwmon-disable
 ```
 3) Targeted dictionary attack... create a custom lowercase wordlist using CeWL and add local sports teams, city names, mascots, etc and apply the best64.rule
 ```
-hashcat.exe -d <include_gpu_numbers> -m 1000 -w 4 -a 0 --session <name_your_session> <ntlm_hashes.txt> <custom_wordlist.txt> -r best64.rule --force
+hashcat.exe -d <include_gpu_numbers> -m 1000 -w 4 -a 0 --session <name_your_session> <ntlm_hashes.txt> <custom_wordlist.txt> -r best64.rule -O --force --hwmon-disable
 ```
 4) Analyze the set of cracked passwords for potential patterns, run targeted attacks which reflect those patterns.
 5) BIG dictionary attack... run the passwords through the largest wordlist you have.
@@ -43,7 +44,7 @@ hashcat.exe -d <include_gpu_numbers> -m 1000 -w 4 -a 0 --session <name_your_sess
 
 ## Example Hashcat Command for Using the .hcmask to Crack NTLM Hashes
 ```
-hashcat.exe -d <include_gpu_numbers> -m 1000 -w 4 -a 3 --session <name_your_session> <ntlm_hashes.txt> 1-day_8-14.hcmask --force
+hashcat.exe -d <include_gpu_numbers> -m 1000 -w 4 -a 3 --session <name_your_session> <ntlm_hashes.txt> 1-day_8-14.hcmask -O --force --hwmon-disable
 ```
 ## Extra switches that might be necessary to make Hashcat crack better!
 ```
