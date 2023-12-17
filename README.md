@@ -27,15 +27,15 @@ The .hcmask files above describe passwords of differing character lengths, each 
 0) Backup/Clear your hashcat potfile for the new set of hashes because mixing previous results gets confusing and if the potfile gets too large it can slow down the cracking process.
 1) Basic dictionary attack with your favorite wordlist... ie rockyou.txt
 ```
-hashcat.exe -d <include_gpu_numbers> -m 1000 -w 4 -a 0 --session <name_your_session> <ntlm_hashes.txt> <rockyou.txt> -O --force --hwmon-disable
+hashcat.exe -d <include_gpu_numbers> -m 1000 -w 4 -a 0 --session <name_your_session> <ntlm_hashes.txt> <rockyou.txt> -O
 ```
 2) Brute force all permutations 1-7 character length passwords... this does not take long given the minimal keyspace of this group.
 ```
-hashcat.exe --increment --increment-min=1 -d <include_gpu_numbers> -m 1000 -w 4 -a 3 --session <name_your_session> <ntlm_hashes.txt> ?a?a?a?a?a?a?a -O --force --hwmon-disable
+hashcat.exe --increment --increment-min=1 -d <include_gpu_numbers> -m 1000 -w 4 -a 3 --session <name_your_session> <ntlm_hashes.txt> ?a?a?a?a?a?a?a -O
 ```
 3) Targeted dictionary attack... create a custom lowercase wordlist using CeWL and add local sports teams, city names, mascots, etc and apply the best64.rule
 ```
-hashcat.exe -d <include_gpu_numbers> -m 1000 -w 4 -a 0 --session <name_your_session> <ntlm_hashes.txt> <custom_wordlist.txt> -r best64.rule -O --force --hwmon-disable
+hashcat.exe -d <include_gpu_numbers> -m 1000 -w 4 -a 0 --session <name_your_session> <ntlm_hashes.txt> <custom_wordlist.txt> -r best64.rule -O
 ```
 4) Analyze the set of cracked passwords for potential patterns, run targeted attacks which reflect those patterns.
 5) BIG dictionary attack... run the passwords through the largest wordlist you have.
@@ -44,11 +44,10 @@ hashcat.exe -d <include_gpu_numbers> -m 1000 -w 4 -a 0 --session <name_your_sess
 
 ## Example Hashcat Command for Using the .hcmask to Crack NTLM Hashes
 ```
-hashcat.exe -d <include_gpu_numbers> -m 1000 -w 4 -a 3 --session <name_your_session> <ntlm_hashes.txt> 1-day_8-14.hcmask -O --force --hwmon-disable
+hashcat.exe -d <include_gpu_numbers> -m 1000 -w 4 -a 3 --session <name_your_session> <ntlm_hashes.txt> 1-day_8-14.hcmask -O
 ```
-## Extra switches that might be necessary to make Hashcat crack better!
+## Extra flags that might be necessary to make Hashcat work on your system.  NOTE: These are dangerous, and should only be used very rarely!
 ```
--O | Optimized Kernel that makes cracking passwords generally 30-40% faster.
 --force | Force Hashcat to stop bothering you and just crack the damn passwords.
 --hwmon-disable | Hashcat will throttle based on temp readings... ignore this and go for broke!
 ```
